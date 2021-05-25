@@ -1,6 +1,6 @@
 from flask import Flask
-from datetime import datetime
 from apscheduler.schedulers.background import BackgroundScheduler
+from services.mailer.mailer import mail
 
 import requests, json
 
