@@ -39,7 +39,7 @@ def get_latest_data():
                     pass
                 temp = {}
                 temp['name'] = item['name']
-                temp['rate_inr'] = item['cmc_coin']['rate_inr']
+                temp['rate_inr'] = int(item['cmc_coin']['rate_inr'])
 
                 data.append(temp)
 
