@@ -9,6 +9,8 @@ app = Flask(__name__)
 
 coins_id = [1, 6, 220, 210, 276, 205]
 
+coins_name = ['Bitcoin','Ethereum','Polygon','Cardano','Dogecoin']
+
 coins = [
     {"id": 220, "name": "Aave", "rate": 28000}, 
     {"id": 210, "name": "Cardano", "rate": 140}, 
@@ -34,9 +36,9 @@ def get_latest_data():
         data = []
         arr = resp.json()
         for item in arr:
-            if(item['id'] in coins_id):
-                if(best_rate[item['id']] > int(item['cmc_coin']['rate_inr'])):
-                    pass
+            if(item['name'] in coins_name):
+                # if(best_rate[item['id']] > int(item['cmc_coin']['rate_inr'])):
+                #     pass
                 temp = {}
                 temp['name'] = item['name']
                 temp['rate_inr'] = int(item['cmc_coin']['rate_inr'])
