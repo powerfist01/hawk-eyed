@@ -1,51 +1,57 @@
 from email.mime.multipart import MIMEMultipart 
 from email.mime.text import MIMEText 
-import smtplib
+import smtplib, os
 
-fromaddr = "sujeets307@gmail.com"
-frompassword = ""
 
-toclientaddr = "" 
-toaddr = ""
 
-def mail(data):
-    # instance of MIMEMultipart 
-    msg = MIMEMultipart() 
-    
-    # storing the senders email address   
-    msg['From'] = fromaddr  
-    
-    # storing the receivers email address  
-    msg['To'] = toclientaddr 
-    
-    # storing the subject   
-    msg['Subject'] = 'Latest Coinswitch Values'
-    
-    htmlEmail = f"""
-        <h2> Coinswitch Value Updates </h2>
-        <hr>
-        <font color="black"> {data} </font>
-        """
+class Mail:
+    sender_email = os.getenv('SENDER_EMAIL')
+    sender_email_password = os.getenv('SENDER_EMAIL_PASSWORD')
 
-    # attach the body with the msg instance 
-    msg.attach(MIMEText(htmlEmail, 'html'))
-    
-    # creates SMTP session 
-    s = smtplib.SMTP('smtp.gmail.com', 587) 
-    
-    # start TLS for security 
-    s.starttls() 
-    
-    # Authentication 
-    # Password is required here
-    s.login(fromaddr, frompassword) 
-    
-    # Converts the Multipart msg into a string 
-    text = msg.as_string() 
-    
-    # sending the mail 
-    s.sendmail(fromaddr, toclientaddr, text) 
-    
-    # terminating the session 
-    s.quit()
-    return 200
+    receiving_emails = ['sujeets207@gmail.com']
+
+    def send_mail(self, data):
+        # instance of MIMEMultipart 
+        try:
+            msg = MIMEMultipart() 
+            
+            # storing the senders email address   
+            msg['From'] = self.sender_email  
+            
+            # storing the receivers email address  
+            msg['To'] =  self.receiving_emails[0]
+            
+            # storing the subject   
+            msg['Subject'] = 'Latest Coinswitch Values'
+            
+            htmlEmail = f"""
+                <h2> Coinswitch Value Updates </h2>
+                <hr>
+                <font color="black"> {data} </font>
+                """
+
+            # attach the body with the msg instance 
+            msg.attach(MIMEText(htmlEmail, 'html'))
+            
+            # creates SMTP session 
+            s = smtplib.SMTP('smtp.gmail.com', 587) 
+            
+            # start TLS for security 
+            s.starttls() 
+            
+            # Authentication 
+            # Password is required here
+            s.login(self.sender_email, self.sender_email_password) 
+            
+            # Converts the Multipart msg into a string 
+            text = msg.as_string() 
+            
+            # sending the mail 
+            s.sendmail(self.sender_email, self.receiving_emails[0], text) 
+            
+            # terminating the session 
+            s.quit()
+
+            return True
+        except Exception as e:
+            print('Error in sending the email')

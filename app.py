@@ -1,13 +1,11 @@
 from flask import Flask
 from apscheduler.schedulers.background import BackgroundScheduler
-from services.mailer.mailer import mail
+from services.mailer.mailer import Mail
 
 import requests
 import json
 
 app = Flask(__name__)
-
-coins_id = [1, 6, 220, 210, 276, 205]
 
 coins_name = ['Bitcoin','Ethereum','Polygon','Cardano','Dogecoin']
 
@@ -51,11 +49,13 @@ def get_latest_data():
 
 
 def send_mail():
-    mail()
+    mail = Mail()
+    mail.send_mail(data='not-yet')
 
 
 @app.route('/')
 def main():
+    print(app.config.from_envvar('NAME'))
     return 'Server is running hot!!!'
 
 
