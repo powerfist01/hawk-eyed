@@ -2,8 +2,6 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 import smtplib, os
 
-
-
 class Mail:
     sender_email = os.getenv('SENDER_EMAIL')
     sender_email_password = os.getenv('SENDER_EMAIL_PASSWORD')

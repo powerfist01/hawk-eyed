@@ -10,7 +10,6 @@ app = Flask(__name__)
 coins_name = ['Bitcoin','Ethereum','Polygon','Cardano','Dogecoin']
 
 coins = [
-    {"id": 220, "name": "Aave", "rate": 28000}, 
     {"id": 210, "name": "Cardano", "rate": 140}, 
     {"id": 1, "name": "Bitcoin", "rate": 2900000}, 
     {"id": 6, "name": "Ethereum", "rate": 200000}, 
@@ -18,13 +17,12 @@ coins = [
     {"id": 205, "name": "Maker", "rate": 270000}
 ]
 
-best_rate = {
-    1: 2900000,
-    6: 200000,
-    205: 270000,
-    210: 140,
-    220: 28000,
-    276: 150
+coins_best_rate = {
+    'Bitcoin': 2900000,
+    'Ethereum': 200000,
+    'Maker': 270000,
+    'Cardano': 140,
+    'Polygon': 150
 }
 
 def get_latest_data():
@@ -35,8 +33,8 @@ def get_latest_data():
         arr = resp.json()
         for item in arr:
             if(item['name'] in coins_name):
-                # if(best_rate[item['id']] > int(item['cmc_coin']['rate_inr'])):
-                #     pass
+                if(coins_best_rate[item['name']] > int(item['cmc_coin']['rate_inr'])):
+                    pass
                 temp = {}
                 temp['name'] = item['name']
                 temp['rate_inr'] = int(item['cmc_coin']['rate_inr'])
@@ -52,7 +50,6 @@ def send_mail():
     mail = Mail()
     mail.send_mail(data='not-yet')
 
-
 @app.route('/')
 def main():
     print(app.config.from_envvar('NAME'))
@@ -67,7 +64,6 @@ def coinswitch():
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
 # scheduler.start()
-
 
 if __name__ == '__main__':
     app.run(debug=True, host='0.0.0.0', port=5000)
