@@ -33,8 +33,6 @@ def get_latest_data():
         arr = resp.json()
         for item in arr:
             if(item['name'] in coins_name):
-                if(coins_best_rate[item['name']] > int(item['cmc_coin']['rate_inr'])):
-                    pass
                 temp = {}
                 temp['name'] = item['name']
                 temp['rate_inr'] = int(item['cmc_coin']['rate_inr'])
@@ -52,7 +50,6 @@ def send_mail():
 
 @app.route('/')
 def main():
-    print(app.config.from_envvar('NAME'))
     return 'Server is running hot!!!'
 
 
