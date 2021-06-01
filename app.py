@@ -1,9 +1,8 @@
-from flask import Flask
+from flask import Flask, jsonify
 from apscheduler.schedulers.background import BackgroundScheduler
 from services.mailer.mailer import Mail
 
 import requests
-import json
 
 app = Flask(__name__)
 
@@ -39,7 +38,7 @@ def get_latest_data():
 
                 data.append(temp)
 
-        return json.dumps(data)
+        return jsonify(data)
     else:
         return None
 
