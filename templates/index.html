@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Hawk Eyed</title>
+    <link href="https://use.fontawesome.com/releases/v5.0.8/css/all.css" rel="stylesheet">
+    <style>
+        #footer {
+            position:absolute;
+            bottom:0;
+            width:auto;
+         }
+         .container{
+             font-size: large;
+         }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
+                <a class="navbar-brand" href="/" style="text-decoration: none;">
+                    <h3 style="color:rgb(170, 67, 211);">Hawk Eyed</h3>
+                </a>
+            </nav>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 align-self-right">
+                    {% if coins%}
+                    <table class="table">
+                        <tbody>
+                            {% for coin in coins %}
+                            <tr>
+                                <th scope="row">
+                                    <div>{{ loop.index }}.</div>
+                                </th>
+                                <td>
+                                    {{ coin.name}} - {{ coin.rate_inr}}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <br>
+    </div>
+
+    <footer id="footer" class="bd-footer text-muted">
+        <div>
+            <a href="https://github.com/powerfist01/hawk-eyed" target="_blank">
+                <i class="fab fa-github"></i>
+            </a>
+            <p>Designed and built with lots of <i style="color: red;" class="fas fa-heart"></i><i style="color: red;" class="fas fa-heart"></i>.</p>
+        </div>
+    </footer>
+</body>
+</html>

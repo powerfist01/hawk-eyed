@@ -1,8 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from apscheduler.schedulers.background import BackgroundScheduler
 from services.mailer.mailer import Mail
 
-import requests
+import requests, json
 
 app = Flask(__name__)
 
@@ -38,7 +38,7 @@ def get_latest_data():
 
                 data.append(temp)
 
-        return jsonify(data)
+        return data
     else:
         return None
 
@@ -55,7 +55,8 @@ def main():
 @app.route('/coinswitch')
 def coinswitch():
 
-    return get_latest_data()
+    coins = get_latest_data()
+    return render_template('index.html', coins = coins)
 
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
