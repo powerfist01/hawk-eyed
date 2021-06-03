@@ -34,7 +34,7 @@ def get_latest_data():
             if(item['name'] in coins_name):
                 temp = {}
                 temp['name'] = item['name']
-                temp['rate_inr'] = int(item['cmc_coin']['rate_inr'])
+                temp['rate_inr'] = item['cmc_coin']['rate_inr']
 
                 data.append(temp)
 
