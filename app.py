@@ -24,24 +24,29 @@ coins_best_rate = {
     'Polygon': 150
 }
 
-def get_latest_data():
+def get_latest_data(coin=''):
 
-    resp = requests.get('https://coinswitch.co/proxy/in/api/v1/coins')
-    if(resp.status_code == 200):
-        data = []
+    try:
+        resp = requests.get('https://coinswitch.co/proxy/in/api/v1/coins')
         arr = resp.json()
-        for item in arr:
-            if(item['name'] in coins_name):
-                temp = {}
-                temp['name'] = item['name']
-                temp['rate_inr'] = item['cmc_coin']['rate_inr']
+        if(coin):
+            for item in arr:
+                if(item['name'] == coin):
+                    return item
+            return {'details':'Coin not found!'}
+        else:
+            data = []
+            for item in arr:
+                if(item['name'] in coins_name):
+                    temp = {}
+                    temp['name'] = item['name']
+                    temp['rate_inr'] = item['cmc_coin']['rate_inr']
 
-                data.append(temp)
+                    data.append(temp)
 
-        return data
-    else:
-        return None
-
+            return data
+    except Exception as e:
+        return {'details': 'API not working, sorry :('}
 
 def send_mail():
     mail = Mail()
@@ -57,6 +62,12 @@ def coinswitch():
 
     coins = get_latest_data()
     return render_template('index.html', coins = coins)
+
+@app.route('/get_total_info/<coin>')
+def total_info(coin):
+
+    coin_data = get_latest_data(coin)
+    return coin_data
 
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)

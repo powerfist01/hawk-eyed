@@ -87,14 +87,14 @@
         <div class="cards-list">
             {% if coins%}
                 {% for coin in coins %}
-                <div class="card">
+                <a class="card" href=/get_total_info/{{coin.name}}>
                     <div class="card_image">
                         <img src="https://i.redd.it/b3esnz5ra34y.jpg" />
                     </div>
                     <div class="card_title title-white">
                         <p>{{ coin.name }} <br> {{ coin.rate_inr}}</p>
                     </div>
-                </div>
+                </a>
                 {% endfor %}
             {% endif %}
         </div>
