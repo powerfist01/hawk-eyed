@@ -9,7 +9,9 @@
             bottom: 0;
             width: auto;
         }
-
+        a{
+            text-decoration: none;
+        }
         .container {
             font-size: large;
         }
@@ -75,13 +77,9 @@
 
 <body>
     <div class="container-fluid">
-        <div class="container-fluid">
-            <nav class="navbar navbar-expand-lg navbar-light bg-dark">
-                <a class="navbar-brand" href="/" style="text-decoration: none;">
-                    <h3 style="color:rgb(170, 67, 211);">Hawk Eyed</h3>
-                </a>
-            </nav>
-        </div>
+        <a class="navbar-brand" href="/">
+            <h3 style="color:rgb(170, 67, 211);">Hawk Eyed</h3>
+        </a>
 
         <div class="cards-list">
             {% if coins%}
