@@ -6,7 +6,7 @@ import requests, json
 
 app = Flask(__name__)
 
-coins_name = ['Bitcoin','Ethereum','Cardano', 'Solana','The Graph','Polygon']
+coins_name = ['Bitcoin','Ethereum','Cardano', 'Solana','The Graph','Polygon','Ripple']
 
 coins = [
     {"id": 210, "name": "Cardano", "rate": 140}, 
