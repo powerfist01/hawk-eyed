@@ -16,14 +16,6 @@ coins = [
     {"id": 205, "name": "Maker", "rate": 270000}
 ]
 
-coins_best_rate = {
-    'Bitcoin': 2900000,
-    'Ethereum': 200000,
-    'Maker': 270000,
-    'Cardano': 140,
-    'Polygon': 150
-}
-
 def get_latest_data(coin=''):
 
     try:
@@ -56,7 +48,6 @@ def send_mail():
 def main():
     return 'Server is running hot!!!'
 
-
 @app.route('/coinswitch')
 def coinswitch():
 
@@ -68,6 +59,11 @@ def total_info(coin):
 
     coin_data = get_latest_data(coin)
     return coin_data
+
+@app.route('/instagram')
+def coinswitch():
+
+    return render_template('instagram.html')
 
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
