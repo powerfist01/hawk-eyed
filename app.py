@@ -61,7 +61,7 @@ def total_info(coin):
     return coin_data
 
 @app.route('/instagram')
-def coinswitch():
+def instagram():
 
     return render_template('instagram.html')
 
