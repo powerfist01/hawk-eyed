@@ -1,6 +1,7 @@
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, render_template, request
 from apscheduler.schedulers.background import BackgroundScheduler
 from services.mailer.mailer import Mail
+from services.tweet_to_image.tweetpik import TweekPik
 
 import requests, json
 
@@ -60,10 +61,17 @@ def total_info(coin):
     coin_data = get_latest_data(coin)
     return coin_data
 
-@app.route('/instagram')
+@app.route('/instagram', methods =['GET', 'POST'])
 def instagram():
 
-    return render_template('instagram.html')
+    if(request.method == 'POST'):
+        tweet_id = request.form['tweet_id']
+        tweetPik = TweekPik()
+        path = tweetPik.download_image_using_tweet_id(tweet_id)
+
+        return {'success': True, 'data': path}
+    else:
+        return render_template('instagram.html')
 
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
