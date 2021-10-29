@@ -6,6 +6,7 @@ Flask==2.0.1
 flask-crontab==0.1.2
 gunicorn==20.1.0
 idna==2.10
+instabot==0.117.0
 itsdangerous==2.0.1
 Jinja2==3.0.1
 MarkupSafe==2.0.1
