@@ -1,5 +1,5 @@
 from instabot import Bot
-import os, shutil
+import os, shutil, time
 from dotenv import load_dotenv
 load_dotenv()  # take environment variables from .env
 
@@ -12,6 +12,7 @@ class InstaBot:
         '''To upload the image on Instagram'''
         try:
             bot = Bot()
+            time.sleep(5)
             bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'], is_threaded=True)
             bot.upload_photo(path, caption=caption)
 
