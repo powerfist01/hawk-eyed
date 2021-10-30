@@ -7,7 +7,7 @@ load_dotenv()  # take environment variables from .env
 
 class TweekPik:
     tweetpik_uri = 'https://tweetpik.com/api/images'
-    headers = {'Content-Type': 'application/json', 'authorization': os.getenv('TWEETPIK_AUTHORIZATION')}
+    headers = {'Content-Type': 'application/json', 'authorization': os.environ['TWEETPIK_AUTHORIZATION']}
 
     def __init__(self):
         '''Default constructor'''
