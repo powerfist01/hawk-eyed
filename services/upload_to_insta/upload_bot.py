@@ -12,7 +12,7 @@ class InstaBot:
         '''To upload the image on Instagram'''
         try:
             bot = Bot()
-            bot.login(username=os.getenv('INSTAGRAM_USERNAME'), password=os.getenv('INSTAGRAM_PASSWORD'), is_threaded=True)
+            bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'], is_threaded=True)
             bot.upload_photo(path, caption=caption)
 
             self.remove_files()
