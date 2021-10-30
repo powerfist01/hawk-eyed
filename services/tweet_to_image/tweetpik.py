@@ -1,6 +1,10 @@
 from PIL import Image
 import requests, json, os
 
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env
+
 class TweekPik:
     tweetpik_uri = 'https://tweetpik.com/api/images'
     headers = {'Content-Type': 'application/json', 'authorization': os.getenv('TWEETPIK_AUTHORIZATION')}
@@ -8,7 +12,7 @@ class TweekPik:
     def __init__(self):
         '''Default constructor'''
         pass
-
+    
     def fetch_tweet_image_url(self, tweet_id):
         '''To download get the url of the tweet image from tweetpik'''
         try:
@@ -37,7 +41,7 @@ class TweekPik:
             with open(path, 'wb') as f:
                 for chunk in res:
                     f.write(chunk)
-            self.crop_image(path)
+            path = self.crop_image(path)
             return path
         else:
             print("Error Occured in downloading image!")
@@ -57,3 +61,17 @@ class TweekPik:
             im_crop = im.crop((left, top, right, bottom))
 
             im_crop.save(path, 'png')
+
+        if(str(path).endswith('.png')):
+            path = self.convert_to_jpeg(path)
+        
+        return path
+
+    def convert_to_jpeg(self, path):
+        '''To convert to jpg'''
+
+        im = Image.open(path)
+        rgb_im = im.convert('RGB')
+        path = path.replace('.png', '.jpg')
+        rgb_im.save(path)
+        return path
