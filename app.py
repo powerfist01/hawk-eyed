@@ -7,6 +7,8 @@ from services.tweet_to_image.tweetpik import TweekPik
 from services.upload_to_insta.upload_bot import InstaBot
 from services.db.db import DB
 
+import os
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -42,9 +44,14 @@ def instagram():
     else:
         return render_template('instagram.html')
 
+@app.route('/testing')
+def testing():
+
+    return {'data': os.environ['TWEETPIK_AUTHORIZATION']}
+
 # scheduler = BackgroundScheduler()
 # scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
 # scheduler.start()
 
 if __name__ == '__main__':
-    app.run(debug=False, host='0.0.0.0', port=5000)
+    app.run(debug=True, host='0.0.0.0', port=5000)
