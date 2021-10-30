@@ -9,9 +9,11 @@
             bottom: 0;
             width: auto;
         }
-        a{
+
+        a {
             text-decoration: none;
         }
+
         .container {
             font-size: large;
         }
@@ -80,16 +82,17 @@
         <h3 style="color:rgb(170, 67, 211);">CoinSwitch API</h3>
         <div class="cards-list">
             {% if coins%}
-                {% for coin in coins %}
-                <a class="card" href=/get_total_info/{{coin.name}}>
-                    <div class="card_image">
-                        <img src="https://pixelz.cc/wp-content/uploads/2018/08/bitcoin-cryptocurrency-coins-uhd-4k-wallpaper.jpg" />
-                    </div>
-                    <div class="card_title title-white">
-                        <p>{{ coin.name }} <br> {{ coin.rate_inr}}</p>
-                    </div>
-                </a>
-                {% endfor %}
+            {% for coin in coins %}
+            <a class="card" href=/get_total_info/{{coin.name}}>
+                <div class="card_image">
+                    <img
+                        src="https://pixelz.cc/wp-content/uploads/2018/08/bitcoin-cryptocurrency-coins-uhd-4k-wallpaper.jpg" />
+                </div>
+                <div class="card_title title-white">
+                    <p>{{ coin.name }} <br> {{ coin.rate_inr}}</p>
+                </div>
+            </a>
+            {% endfor %}
             {% endif %}
         </div>
         <br>
@@ -97,11 +100,15 @@
 
     <footer id="footer" class="bd-footer text-muted">
         <div>
-            <a href="https://github.com/powerfist01/hawk-eyed" target="_blank">
-                <i class="fab fa-github"></i>
-            </a>
-            <p>Designed and built with lots of <i style="color: red;" class="fas fa-heart"></i><i style="color: red;"
-                    class="fas fa-heart"></i>.</p>
+
+            <p>Designed 
+                <a href="https://github.com/powerfist01/hawk-eyed" target="_blank">
+                    <i class="fab fa-github"></i>
+                </a> 
+                and built with lots of 
+                <i style="color: red;" class="fas fa-heart"></i>
+                <i style="color: red;" class="fas fa-heart"></i>.
+            </p>
         </div>
     </footer>
 </body>
