@@ -11,11 +11,13 @@ class InstaBot:
     def upload_image(self, path, caption):
         '''To upload the image on Instagram'''
         try:
+            time.sleep(5)
             bot = Bot()
             time.sleep(5)
             bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'], is_threaded=True)
+            time.sleep(5)
             bot.upload_photo(path, caption=caption)
-
+            time.sleep(5)
             self.remove_files()
             self.remove_config_folder()
         except Exception as e:
