@@ -9,6 +9,11 @@ from services.db.db import DB
 
 import os
 
+from dotenv import load_dotenv
+
+env_path = '/home/powerfist01/hawk-eyed/.env'
+load_dotenv(env_path)  # take environment variables from .env
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -47,11 +52,7 @@ def instagram():
 @app.route('/testing')
 def testing():
 
-    return {'data': os.environ['TWEETPIK_AUTHORIZATION']}
-
-# scheduler = BackgroundScheduler()
-# scheduler.add_job(func=get_latest_data, trigger="interval", minutes=1)
-# scheduler.start()
+    return {'data': 'testing'}
 
 if __name__ == '__main__':
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=True)

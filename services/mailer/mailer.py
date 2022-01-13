@@ -2,6 +2,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText 
 import smtplib, os
 
+from dotenv import load_dotenv
+
+env_path = '/home/powerfist01/hawk-eyed/.env'
+load_dotenv(env_path)  # take environment variables from .env
+
 class Mail:
     sender_email = os.getenv('SENDER_EMAIL')
     sender_email_password = os.getenv('SENDER_EMAIL_PASSWORD')

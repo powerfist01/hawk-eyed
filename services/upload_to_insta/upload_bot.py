@@ -1,7 +1,10 @@
 from instabot import Bot
 import os, shutil, time
+
 from dotenv import load_dotenv
-load_dotenv()  # take environment variables from .env
+
+env_path = '/home/powerfist01/hawk-eyed/.env'
+load_dotenv(env_path)  # take environment variables from .env
 
 class InstaBot:
 
@@ -11,13 +14,13 @@ class InstaBot:
     def upload_image(self, path, caption):
         '''To upload the image on Instagram'''
         try:
-            time.sleep(5)
+            time.sleep(1)
             bot = Bot()
-            time.sleep(5)
+            time.sleep(1)
             bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'], is_threaded=True)
-            time.sleep(5)
+            time.sleep(1)
             bot.upload_photo(path, caption=caption)
-            time.sleep(5)
+            time.sleep(1)
             self.remove_files()
             self.remove_config_folder()
         except Exception as e:
@@ -25,7 +28,7 @@ class InstaBot:
 
     def remove_files(self):
         
-        folder = 'downloads'
+        folder = '/home/powerfist01/hawk-eyed/downloads'
         for filename in os.listdir(folder):
             file_path = os.path.join(folder, filename)
             try:

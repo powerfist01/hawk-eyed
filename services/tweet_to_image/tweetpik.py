@@ -3,11 +3,12 @@ import requests, json, os
 
 from dotenv import load_dotenv
 
-load_dotenv()  # take environment variables from .env
+env_path = '/home/powerfist01/hawk-eyed/.env'
+load_dotenv(env_path)  # take environment variables from .env
 
 class TweekPik:
     tweetpik_uri = 'https://tweetpik.com/api/images'
-    headers = {'Content-Type': 'application/json', 'authorization': os.environ['TWEETPIK_AUTHORIZATION']}
+    headers = {'Content-Type': 'application/json', 'authorization': 'b2cbda05-468c-4455-96fc-1a4cf3256adf'}
 
     def __init__(self):
         '''Default constructor'''
@@ -37,7 +38,7 @@ class TweekPik:
 
         res = requests.get(image_url, stream=True)
         if res.status_code == 200:
-            path = 'downloads/' + image_url.split('/')[-1]
+            path = '/home/powerfist01/hawk-eyed/downloads/' + image_url.split('/')[-1]
             with open(path, 'wb') as f:
                 for chunk in res:
                     f.write(chunk)
@@ -53,7 +54,7 @@ class TweekPik:
 
             width, height = im.size   # Get dimensions
             left = width/1000
-            top = height/10
+            top = height/12
             right = width - width/1000
             bottom = height - height/1000
 
