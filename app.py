@@ -38,12 +38,12 @@ def instagram():
 
     if(request.method == 'POST'):
         tweet_id = request.json['tweet_id']
-        caption = request.json['caption']
+        tags = request.json['tags']
         tweetPik = TweekPik()
         path = tweetPik.download_image_using_tweet_id(tweet_id)
 
         insta_bot = InstaBot()
-        insta_bot.upload_image(path, caption)
+        insta_bot.upload_image(path, tags)
 
         return {'success': True, 'data': tweet_id}
     else:

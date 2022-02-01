@@ -277,7 +277,7 @@
             <h1>Automate It!</h1>
             <form class="form">
                 <input type="text" id="tweet_id" placeholder="Enter Tweet Id">
-                <input type="text" id="caption" placeholder="Enter Caption">
+                <input type="text" id="tags" placeholder="Enter Tags">
                 <button type="button" id="clear-button">Clear</button>
                 <button type="submit" id="login-button">Post</button>
             </form>
@@ -309,14 +309,13 @@
             event.preventDefault();
             
             let tweetId = $('#tweet_id').val();
-            let caption = $('#caption').val();
-
+            let tags = $('#tags').val();
             if(!tweetId){
                 alert('Please provide valid input!');
                 return;
             }
             
-            var obj = {tweet_id: tweetId, caption: caption};
+            var obj = {tweet_id: tweetId, tags: tags};
 
             var xhr = new XMLHttpRequest();
             xhr.onreadystatechange = function () {
@@ -324,7 +323,8 @@
                     let data = JSON.parse(this.responseText);
                     console.log(data);
                     if(data.success){
-                        alert('Yay! Image posted on Instagram, please check!')
+                        alert('Yay! Image posted on Instagram, please check!');
+                        $('#tweet_id').val('');
                     }
                 }
             };

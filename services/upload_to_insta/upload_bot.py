@@ -11,7 +11,7 @@ class InstaBot:
     def __init__(self):
         pass
 
-    def upload_image(self, path, caption):
+    def upload_image(self, path, tags):
         '''To upload the image on Instagram'''
         try:
             time.sleep(1)
@@ -19,6 +19,14 @@ class InstaBot:
             time.sleep(1)
             bot.login(username=os.environ['INSTAGRAM_USERNAME'], password=os.environ['INSTAGRAM_PASSWORD'], is_threaded=True)
             time.sleep(1)
+            caption = '''
+                Follow for daily latest news on news, market analysis, education, perspective & opinion. 
+                .
+                .
+                .
+            '''
+            caption += tags + '#bitcoins #cryptocurrency #cryptoindia #cryptonews #ethereum #solana #nft #metaverse #web3'
+
             bot.upload_photo(path, caption=caption)
             time.sleep(1)
             self.remove_files()
